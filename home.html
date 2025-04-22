@@ -3,40 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الصفحة الرئيسية</title>
+  <title>نظام الانتظار</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 40px;
-    }
-    .button {
-      display: block;
-      padding: 15px 30px;
-      font-size: 20px;
-      margin: 10px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff;
-      border-radius: 5px;
-      width: 80%;
-      max-width: 300px;
+      font-family: Arial, sans-serif;
+      padding: 20px;
       text-align: center;
+      font-size: 22px;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 20px;
+      margin: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>مرحباً بك</h1>
-  <a class="button" href="index.html">عميل جديد</a>
-  <a class="button" href="admin.html">لوحة التحكم</a>
+  <h1>مرحباً بك في نظام الانتظار</h1>
+  <button onclick="location.href='index.html'">عميل جديد</button>
+  <button onclick="location.href='admin.html'">لوحة التحكم</button>
 </body>
 </html>

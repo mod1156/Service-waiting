@@ -11,7 +11,15 @@ onChildAdded(ref(db, "clients"), (snapshot) => {
 
   const del = document.createElement("button");
   del.textContent = "تمت الخدمة";
-  del.onclick = () => remove(ref(db, "clients/" + snapshot.key));
+  del.onclick = async () => {
+    try {
+      await remove(ref(db, "clients/" + snapshot.key));
+      li.remove();
+    } catch (err) {
+      alert("حدث خطأ أثناء حذف العميل: " + err.message);
+      console.error(err);
+    }
+  };
 
   li.appendChild(del);
   clientList.appendChild(li);

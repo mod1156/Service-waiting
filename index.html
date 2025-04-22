@@ -7,53 +7,28 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
       padding: 20px;
-      font-size: 18px;
-    }
-    h1 {
-      font-size: 26px;
       text-align: center;
+      font-size: 20px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    label, select, input, button {
-      margin: 10px 0;
-      font-size: 18px;
+    input, select, button {
+      margin: 10px;
       padding: 10px;
-    }
-    button {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-    a {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      font-size: 16px;
+      font-size: 18px;
+      width: 80%;
+      max-width: 400px;
     }
   </style>
 </head>
 <body>
   <h1>انتظار قسم الصيانة</h1>
-  <form id="clientForm">
-    <label for="name">اسم العميل:</label>
-    <input type="text" id="name" required />
-    <label for="service">نوع الخدمة:</label>
-    <select id="service" required>
-      <option value="خدمات الصيانة">خدمات الصيانة</option>
-      <option value="الدعم الفني">الدعم الفني</option>
-      <option value="الدعم التقني">الدعم التقني</option>
-    </select>
-    <button type="submit">تسجيل</button>
-  </form>
-  <a href="home.html">العودة</a>
+  <input type="text" id="name" placeholder="اسم العميل" />
+  <select id="service">
+    <option value="خدمات الصيانة">خدمات الصيانة</option>
+    <option value="الدعم الفني">الدعم الفني</option>
+    <option value="الدعم التقني">الدعم التقني</option>
+  </select>
+  <button id="submit">تسجيل</button>
   <script type="module" src="firebase.js"></script>
   <script type="module" src="index.js"></script>
 </body>

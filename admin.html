@@ -36,18 +36,23 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    a {
+    .back {
       display: block;
       text-align: center;
       margin-top: 20px;
       font-size: 16px;
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <h1>عملاء الانتظار</h1>
   <ul id="clientList"></ul>
-  <a href="home.html">العودة</a>
+  <a class="back" href="home.html">العودة</a>
   <audio id="alertSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
   <script type="module" src="firebase.js"></script>
   <script type="module" src="admin.js"></script>
