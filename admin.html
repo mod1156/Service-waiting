@@ -1,84 +1,55 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>عملاء الانتظار</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      font-size: 18px;
+      background-color: #fff;
+    }
+    h1 {
+      text-align: center;
+      font-size: 26px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
   <h1>عملاء الانتظار</h1>
-  <table id="queueTable" border="1">
-    <thead>
-      <tr><th>الاسم</th><th>الخدمة</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <button onclick="nextClient()">التالي</button>
+  <ul id="clientList"></ul>
+  <a href="home.html">العودة</a>
   <audio id="alertSound" src="alert.mp3" preload="auto"></audio>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAjQ5FG5rDn7m5XY3iuDBt5xIMPeoJO5DQ",
-      authDomain: "service-waiting.firebaseapp.com",
-      databaseURL: "https://service-waiting-default-rtdb.firebaseio.com",
-      projectId: "service-waiting",
-      storageBucket: "service-waiting.appspot.com",
-      messagingSenderId: "230656077357",
-      appId: "1:230656077357:web:6cdfd397a5a7c04c5e52a4"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const queueRef = ref(db, "queue");
-    const tableBody = document.querySelector("#queueTable tbody");
-    const alertSound = document.getElementById("alertSound");
-
-    let lastClientIds = [];
-
-    onValue(queueRef, (snapshot) => {
-      const data = snapshot.val();
-      const newIds = data ? Object.keys(data) : [];
-      const isNewClientAdded = newIds.length > lastClientIds.length;
-
-      tableBody.innerHTML = "";
-
-      if (data) {
-        Object.entries(data).forEach(([key, value]) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `<td>${value.name}</td><td>${value.service}</td>`;
-          row.dataset.id = key;
-          tableBody.appendChild(row);
-        });
-      }
-
-      if (isNewClientAdded) {
-        alertSound.play().catch(e => console.warn("فشل تشغيل الصوت:", e));
-      }
-
-      lastClientIds = newIds;
-    });
-
-    window.nextClient = function () {
-      const firstRow = tableBody.querySelector("tr");
-      if (!firstRow) {
-        alert("لا يوجد عملاء في القائمة.");
-        return;
-      }
-
-      const clientId = firstRow.dataset.id;
-      if (!clientId) {
-        alert("معرف العميل غير موجود.");
-        return;
-      }
-
-      remove(ref(db, "queue/" + clientId)).then(() => {
-        alertSound.play().catch(e => console.warn("فشل تشغيل الصوت:", e));
-      }).catch((error) => {
-        alert("فشل الحذف: " + error.message);
-      });
-    }
-  </script>
+  <script src="firebase.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>
